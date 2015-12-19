@@ -45,16 +45,18 @@ ucuis = unique(cuis, 'rows');
 num_ingr_raw = size(uingr, 1);
 num_cuis = size(ucuis, 1);
 
-cuis_list = cell(num_cuis, 1);
-for i = 1:num_cuis
-    cuis_list{i} = lower(strtrim(ucuis(i,:))); % needed to trim string
-end
-
 % transform into cell arrays
-ingr_list_raw = cell(num_ingr_raw, 1);
-for i = 1:num_ingr_raw
-    ingr_list_raw{i} = strtrim(uingr(i,:)); % needed to trim string
-end
+cuis_list = cellstr(ucuis);
+% cuis_list = cell(num_cuis, 1);
+% for i = 1:num_cuis
+%     cuis_list{i} = lower(strtrim(ucuis(i,:))); % needed to trim string
+% end
+
+ingr_list_raw = cellstr(uingr);
+% ingr_list_raw = cell(num_ingr_raw, 1);
+% for i = 1:num_ingr_raw
+%     ingr_list_raw{i} = strtrim(uingr(i,:)); % needed to trim string
+% end
 
 % analyze frequency of ingredients
 ingr_frequency = zeros(num_ingr_raw, 1);
@@ -81,12 +83,14 @@ for i = 1:num_ingr_raw
   endif
 endfor
 
-% transform into cell array (make this a function!)
 num_ingr = size(uingr_over_threshold, 1);
-ingr_list = cell(num_ingr, 1);
-for i = 1:num_ingr
-    ingr_list{i} = strtrim(uingr_over_threshold(i,:)); % needed to trim string
-end
+
+% transform into cell array (make this a function!)
+ingr_list = cellstr(uingr_over_threshold);
+% ingr_list = cell(num_ingr, 1);
+% for i = 1:num_ingr
+%     ingr_list{i} = strtrim(uingr_over_threshold(i,:)); % needed to trim string
+% end
 
 fprintf('\nNumber of recipes = %d\n', num_recipes);
 fprintf('Number of cuisines = %d\n', num_cuis);
@@ -100,14 +104,11 @@ for i = 1:cuis_table_size
   fprintf('%25s (%d = %6.1f%%)\n', cuis_list{cuis_frequency_index(i)}, cuis_frequency_sorted(i), cuis_frequency_sorted(i) / num_recipes *100);
 endfor
 
-keyboard (">>>: "); 
-
-
 % initialize X and Y arrays
 X = zeros(num_recipes, num_ingr);
 y = zeros(num_recipes, num_cuis);
 
-% fill X and y arrays and analyze frequency of ingredients
+% fill X and y arrays
 for i = 1:num_recipes
   % y array
   cuis_index = find(strcmp(cuis_list, data{i}.cuisine));
@@ -122,12 +123,27 @@ endfor
 
 % SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM 
 C = 0.1;
+C = 1.1;
+C = 0.3;
+C = 0.5;
+
 % model = zeros(num_recipes, num_cuis);
 p = zeros(num_recipes, num_cuis);
 for i = 1:num_cuis
   model(i) = svmTrain(X, y(:,i), C, @linearKernel); 
   p(:,i) = svmPredict(model(i), X);
 endfor
+
+% now go row by row to correct any all-0 predictions with most frequent cuisine
+for i = 1:num_recipes
+  if sum(p(i,:)) == 0
+    p(i,cuis_frequency_index(1)) = 1;
+  endif
+endfor
+
+
+% keyboard (">>>: "); 
+
 
 % compute training accuracy
 % need to guess if all p values are = 0 in row!!!!!!!!!!!!!
