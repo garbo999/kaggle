@@ -89,6 +89,12 @@ mean(Y(1, R(1, :)))
 T = rand(3,2)
 T(:)
 
+% max value and its index
+[ max_value, max_index ] = max(p(3,:))
+
+% sort matrix and get sorted values and original indices
+[s, i] = sort(cuis_frequency, 'descend')
+
 % save data to file
 % http://se.mathworks.com/help/matlab/ref/fprintf.html
 x = 0:.1:1;
