@@ -1,19 +1,4 @@
-%% Initialization
-clear ; close all; clc
-addpath('/home/saasbook/Kaggle/jsonlab');
-addpath('/home/saasbook/MachineLearning/machine-learning-ex6/ex6');
-file='train.json'; % input file
-file='train-2.json'; % tiny file
-file='train-1.json'; % small file
-file='train-3.json'; % medium file
-
-fprintf('Loading data for Kaggle competition: "What''s cooking"\n');
-fprintf('\nData source: %s\n', file);
-
-% load data
-t=cputime;
-data=loadjson(file);
-printf('Total cpu time: %f seconds\n', cputime-t);
+% need to load data first with file 'kaggle1-load'
 
 % define/initialize constants
 num_recipes = size(data, 2);
@@ -122,10 +107,10 @@ for i = 1:num_recipes
 endfor
 
 % SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM 
-C = 0.1;
 C = 1.1;
 C = 0.3;
 C = 0.5;
+C = 0.1;
 
 % model = zeros(num_recipes, num_cuis);
 p = zeros(num_recipes, num_cuis);
@@ -154,6 +139,7 @@ for i = 1:num_recipes
     correct += 1;
   endif
 endfor
+fprintf('Value of C = %6.2f\n', C);
 fprintf('Training Accuracy: %6.2f%%\n', (correct/num_recipes) * 100);
 
 % X

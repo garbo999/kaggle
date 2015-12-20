@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <0>
+    <id>10259</id>
+    <cuisine>greek</cuisine>
+    <ingredients>romaine lettuce</ingredients>
+    <ingredients>black olives</ingredients>
+    <ingredients>grape tomatoes</ingredients>
+    <ingredients>garlic</ingredients>
+    <ingredients>pepper</ingredients>
+    <ingredients>purple onion</ingredients>
+    <ingredients>seasoning</ingredients>
+    <ingredients>garbanzo beans</ingredients>
+    <ingredients>feta cheese crumbles</ingredients>
+  </0>
+  <1>
+    <id>25693</id>
+    <cuisine>southern_us</cuisine>
+    <ingredients>plain flour</ingredients>
+    <ingredients>ground pepper</ingredients>
+    <ingredients>salt</ingredients>
+    <ingredients>tomatoes</ingredients>
+    <ingredients>ground black pepper</ingredients>
+    <ingredients>thyme</ingredients>
+    <ingredients>eggs</ingredients>
+    <ingredients>green tomatoes</ingredients>
+    <ingredients>yellow corn meal</ingredients>
+    <ingredients>milk</ingredients>
+    <ingredients>vegetable oil</ingredients>
+  </1>
+  <2>
+    <id>20130</id>
+    <cuisine>filipino</cuisine>
+    <ingredients>eggs</ingredients>
+    <ingredients>pepper</ingredients>
+    <ingredients>salt</ingredients>
+    <ingredients>mayonaise</ingredients>
+    <ingredients>cooking oil</ingredients>
+    <ingredients>green chilies</ingredients>
+    <ingredients>grilled chicken breasts</ingredients>
+    <ingredients>garlic powder</ingredients>
+    <ingredients>yellow onion</ingredients>
+    <ingredients>soy sauce</ingredients>
+    <ingredients>butter</ingredients>
+    <ingredients>chicken livers</ingredients>
+  </2>
+  
