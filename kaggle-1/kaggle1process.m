@@ -109,8 +109,8 @@ endfor
 % SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM SVM 
 C = 1.1;
 C = 0.3;
-C = 0.5;
 C = 0.1;
+C = 0.5;
 
 % model = zeros(num_recipes, num_cuis);
 p = zeros(num_recipes, num_cuis);
